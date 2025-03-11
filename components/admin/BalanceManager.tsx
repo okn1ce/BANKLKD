@@ -7,7 +7,7 @@ type User = {
   balance: number
 }
 
-export default function BalanceManager({ users }: { users: User[] }) {
+export default function BalanceManager() {
   const [selectedUser, setSelectedUser] = useState<number | ''>('')
   const [amount, setAmount] = useState('')
   const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null)
@@ -61,11 +61,7 @@ export default function BalanceManager({ users }: { users: User[] }) {
             className="w-full px-4 py-2 bg-dark-accent rounded-lg border border-dark-accent focus:border-accent-primary outline-none"
           >
             <option value="">Sélectionner un utilisateur</option>
-            {users.map(user => (
-              <option key={user.id} value={user.id}>
-                {user.username} ({user.balance} LKD)
-              </option>
-            ))}
+            {/* Add your users here */}
           </select>
         </div>
 
