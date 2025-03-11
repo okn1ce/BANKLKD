@@ -1,0 +1,40 @@
+{
+  "name": "pari-di-jour",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:seed": "ts-node prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8",
+    "prisma": "^6.4.1",
+    "tailwindcss": "^3.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@prisma/client": "^6.4.1",
+    "canvas-confetti": "^1.9.3",
+    "chart.js": "^4.4.8",
+    "framer-motion": "^12.5.0",
+    "next": "^14.2.24",
+    "react": "^18",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^18"
+  }
+}

@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.dark.accent') transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: theme('colors.dark.accent');
+    border-radius: 3px;
+  }
+}
+
+@keyframes gold-shine {
+  0% {
+    background-position: 0% 50%;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    background-position: 100% 50%;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.8),
+                 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  100% {
+    background-position: 0% 50%;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+  }
+}
+
+.animate-rainbow {
+  background: linear-gradient(
+    to right,
+    #ffd700 20%,    /* Or */
+    #fff4b8 30%,    /* Or clair */
+    #ffd700 40%,    /* Or */
+    #faf0be 50%,    /* Or très clair */
+    #ffd700 60%,    /* Or */
+    #fff4b8 70%,    /* Or clair */
+    #ffd700 80%     /* Or */
+  );
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: gold-shine 3s linear infinite;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Optionnel : Effet de brillance sur hover */
+.animate-rainbow:hover {
+  animation: gold-shine 2s linear infinite;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.7),
+               0 0 16px rgba(255, 215, 0, 0.5),
+               0 0 24px rgba(255, 215, 0, 0.3);
+}
+
+.animate-pulse-fast {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 0.5s ease infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -200% 50%;
+  }
+}
+
+@keyframes shine-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shine {
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
+}
+
+.animate-shine-line::after {
+  animation: shine-line 2s infinite;
+}
+
+@keyframes matrix {
+  0% {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+  }
+  50% {
+    color: #008000;
+    text-shadow: 0 0 10px #008000;
+  }
+  100% {
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+  }
+}
+
+.animate-matrix {
+  font-family: monospace;
+  animation: matrix 2s infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+/* Animation Rebond */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animation Glitch */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Animation Brillance */
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-shine {
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to right,
+    theme('colors.accent.secondary') 0%,
+    theme('colors.accent.tertiary') 50%,
+    theme('colors.accent.secondary') 100%
+  );
+  animation: shine 2s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Ajoutez les autres keyframes nécessaires pour vos animations */
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.5),
+               0 0 20px rgba(74, 222, 128, 0.3),
+               0 0 30px rgba(74, 222, 128, 0.2);
+}
+
+@keyframes rainbow-pulse {
+  0%, 100% {
+    color: #ff0000;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  25% {
+    color: #00ff00;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+  50% {
+    color: #0000ff;
+    text-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+  }
+  75% {
+    color: #ff00ff;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+  }
+}
+
+.animate-rainbow-pulse {
+  animation: rainbow-pulse 4s infinite;
+}
+
+/* Animation Gaming RGB */
+@keyframes gaming {
+  0% {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+  }
+  33% {
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+  }
+  66% {
+    color: #0000ff;
+    text-shadow: 0 0 10px #0000ff;
+  }
+  100% {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+  }
+}
+
+.animate-gaming {
+  animation: gaming 2s linear infinite;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+} 
