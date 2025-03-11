@@ -1,9 +1,15 @@
 export const ACHIEVEMENTS = {
+  FIRST_BET: {
+    id: 'FIRST_BET',
+    name: 'Premier pari',
+    description: 'Place ton premier pari',
+    icon: '🎲'
+  },
   FIRST_WIN: {
-    id: 'first_win',
-    name: "Début de l'addiction",
-    description: "Gagner son premier pari",
-    icon: "PlayIcon"
+    id: 'FIRST_WIN',
+    name: 'Première victoire',
+    description: 'Gagne ton premier pari',
+    icon: '🏆'
   },
   WIN_STREAK_3: {
     id: 'win_streak_3',
