@@ -4,12 +4,13 @@ import { useRouter } from 'next/navigation'
 import BalanceManager from '@/components/admin/BalanceManager'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import DangerZone from '@/components/admin/DangerZone'
+import { User, BetEvent } from '@/lib/types'
 
 export default function AdminPage() {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<User[]>([])
+  const [bets, setBets] = useState<BetEvent[]>([])
   const [loading, setLoading] = useState(true)
-  const [question, setQuestion] = useState('')
-  const [bets, setBets] = useState([])
+  const [newQuestion, setNewQuestion] = useState('')
   const router = useRouter()
 
   useEffect(() => {
@@ -39,17 +40,17 @@ export default function AdminPage() {
 
   const createBet = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!question) return
+    if (!newQuestion) return
 
     try {
       const response = await fetch('/api/bets/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question })
+        body: JSON.stringify({ question: newQuestion })
       })
 
       if (response.ok) {
-        setQuestion('')
+        setNewQuestion('')
         const betsRes = await fetch('/api/bets/all')
         const newBets = await betsRes.json()
         setBets(newBets)
@@ -78,18 +79,23 @@ export default function AdminPage() {
   }
 
   const handleReset = async () => {
-    // Recharger toutes les données
-    const [userRes, betsRes] = await Promise.all([
-      fetch('/api/user'),
-      fetch('/api/bets/all')
-    ])
-    const [userData, betsData] = await Promise.all([
-      userRes.json(),
-      betsRes.json()
-    ])
-    
-    setUsers(userData.leaderboard)
-    setBets(betsData)
+    try {
+      await fetch('/api/admin/reset', { method: 'POST' })
+      // Recharger toutes les données
+      const [userRes, betsRes] = await Promise.all([
+        fetch('/api/user'),
+        fetch('/api/bets/all')
+      ])
+      const [userData, betsData] = await Promise.all([
+        userRes.json(),
+        betsRes.json()
+      ])
+      
+      setUsers(userData.leaderboard)
+      setBets(betsData)
+    } catch (error) {
+      console.error('Error resetting:', error)
+    }
   }
 
   if (loading) {
@@ -121,8 +127,8 @@ export default function AdminPage() {
           <form onSubmit={createBet} className="space-y-4">
             <input
               type="text"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
+              value={newQuestion}
+              onChange={(e) => setNewQuestion(e.target.value)}
               placeholder="Question du pari"
               className="w-full px-4 py-3 bg-dark-accent border-2 border-transparent rounded-lg focus:border-accent-tertiary transition-colors text-white placeholder-gray-500 outline-none"
             />

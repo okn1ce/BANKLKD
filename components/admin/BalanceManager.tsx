@@ -1,13 +1,12 @@
 'use client'
 import { useState } from 'react'
+import { User } from '@/lib/types'
 
-type User = {
-  id: number
-  username: string
-  balance: number
+type BalanceManagerProps = {
+  users: User[]
 }
 
-export default function BalanceManager() {
+export default function BalanceManager({ users }: BalanceManagerProps) {
   const [selectedUser, setSelectedUser] = useState<number | ''>('')
   const [amount, setAmount] = useState('')
   const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null)
